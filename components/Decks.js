@@ -1,8 +1,11 @@
 import React from 'react';
-import { View,Text,FlatList } from 'react-native';
+import { View,Text,FlatList,TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { connect } from 'react-redux';
 import { handleGetAllDecks } from '../actions/shared'
+
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
 
 class Decks extends React.Component {
 
@@ -11,30 +14,32 @@ class Decks extends React.Component {
     }
 
     render() {
-         const { decks } = this.props
+         const { decks,navigation } = this.props
          const sortedDecks = decks.sort((a, b) => b.timestamp - a.timestamp)
 
         return (
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Text>{"\n\n\n\n\n\n\n\n\n\n"}Card Decks - ( {decks!==null ? decks.length : ''} )</Text>
+                <Text>{"\n\n\n\n"}Card Decks - ( {decks!==null ? decks.length : ''} )</Text>
                 <MaterialCommunityIcons name="cards" size={30} />
 
                 <View style={{minWidth:'80%',flexDirection:'column',justifyContent: 'flex-start',padding:10,backgroundColor:'yellow'}}>
                      <FlatList
                         data={sortedDecks}
-                        keyExtractor={item => item.title}
+                        keyExtractor={item => item.id}
                         contentContainerStyle={{
                         flexGrow: 1,
                         }}
                         renderItem={({item}) => (
-                            <View style={{backgroundColor:'red',alignItems: 'center',borderWidth:1,margin:5}}>
-                                <View style={{felx:2, flexDirection:'column'}}>
-                                    <Text style={{margin:5, fontSize:25,fontWeight:'bold'}}>{item.title}</Text>
-                                    <View style={{alignItems: 'center'}}>
-                                        <Text style={{margin:2}}>{item.questions.length} - Cards</Text>
+                            <TouchableOpacity onPress={() => { navigation.navigate('DeckView', { deckId:item.title }); }}>
+                                <View style={{backgroundColor:'red',alignItems: 'center',borderWidth:1,margin:5}}>
+                                    <View style={{felx:2, flexDirection:'column'}}>
+                                        <Text style={{margin:5, fontSize:25,fontWeight:'bold'}}>{item.title}</Text>
+                                        <View style={{alignItems: 'center'}}>
+                                            <Text style={{margin:2}}>{item.questions.length} - Cards</Text>
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         )}
                     />
                 </View>
