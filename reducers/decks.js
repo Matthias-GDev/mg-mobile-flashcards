@@ -1,4 +1,4 @@
-import { ADD_NEW_DECK,GET_ALL_DECKS,DELETE_DECK  } from '../actions/types'
+import { ADD_NEW_DECK,GET_ALL_DECKS,DELETE_DECK,ADD_NEW_CARD  } from '../actions/types'
 
 export default function decks (state = {}, action) {
     
@@ -14,6 +14,16 @@ export default function decks (state = {}, action) {
 					title,
                     timecreated,
 					questions: []
+				}
+            }
+
+        case ADD_NEW_CARD:
+            const { card,deckId } = action;
+            return{
+                ...state,
+				[deckId]:{
+                    ...state[deckId],
+                    questions:[...state[deckId].questions].concat(card)
 				}
             }
 

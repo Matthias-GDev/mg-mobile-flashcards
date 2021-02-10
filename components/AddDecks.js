@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View,Text,TouchableOpacity,TextInput,Keyboard } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { handleSaveNewDeck } from '../actions/shared'
 
@@ -68,6 +67,8 @@ class AddDecks extends Component {
                             <TextInput
                                 style={{ height: 40, borderColor: 'black', borderWidth: 1,backgroundColor:'white'}}
                                 onChangeText={text => this.onChangeTextInput(text)}
+                                placeholder=' Deck title'
+                                placeholderTextColor='gray'
                                 value={value}
                                 />
                         </View>

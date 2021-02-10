@@ -9,6 +9,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AddDecks from './AddDecks';
 import Decks from './Decks';
 import DeckView from './DeckView';
+import NewQuestion from './NewQuestion'
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -18,6 +19,7 @@ function HomeStackScreen() {
    <HomeStack.Navigator>
         <HomeStack.Screen name="Decks" component={Decks} />             
         <HomeStack.Screen name="DeckView" component={DeckView} />
+        <HomeStack.Screen name="NewQuestion" component={NewQuestion} />
    </HomeStack.Navigator>
   );
 }

@@ -29,32 +29,35 @@ let decks = {
   }
 }
 
+export function _saveNewQuestion(card,deckId){
+  const cardData = card
+  const dId = deckId
+  return new Promise((res, rej) => {
+    decks[dId].questions.push(card)
+    return res(cardData,dId)
+  })
+}
+
 export function _getAllDecks (){
-     console.log("_getAllDecks")
      return new Promise((res, rej) => {
       return res(decks)
     })
 }
 
 export function _deleteDeck(deck){
-  
   const deckData = deck
   const deckId = deck.title
-
   return new Promise((res, rej) => {
     decks = delete decks[deckId]
     return res(deckData)
   })
 }
 
-
 export function _saveNewDeck (deck){
-  console.log("_saveNewDeck")
   return new Promise((res, rej) => {
     
       //Id
       deck.id = generateUID()
-
       decks = {
         ...decks,
         [deck.title]:deck

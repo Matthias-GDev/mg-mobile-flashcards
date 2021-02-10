@@ -17,6 +17,9 @@ class DeckView extends Component{
 
     onHandleAddNewCard(){
         console.log("Add new Card")
+        const {navigation,deck} = this.props
+        console.log("toNewCardQuestion: " + deck.title)
+        navigation.navigate('NewQuestion',{ deckId:deck.title })
     }
 
     onHandleStartQuiz(){
@@ -24,9 +27,7 @@ class DeckView extends Component{
     }
 
     onHandleDeleteDeck(){
-        console.log("Delete Deck")
         const {navigation,deck} = this.props
-
         this.props.dispatch(handleDeleteDeck(deck))
         
         setTimeout(function() {
