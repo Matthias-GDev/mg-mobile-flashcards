@@ -42,7 +42,7 @@ class AddDecks extends Component {
         })
 
         setTimeout(function() {
-				 navigation.navigate('Decks')
+				 navigation.navigate('DeckView',{deckId:NewDeckTitle})
 		}, 200);
     }
 

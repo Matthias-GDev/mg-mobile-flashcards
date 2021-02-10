@@ -3,7 +3,8 @@ import { View,Text,TouchableOpacity} from 'react-native';
 
 class FcButton extends Component{
     render(){
-        const {backColor,title,onClick,fcDisabled} = this.props
+        const {backColor,title,onClick,fcDisabled,fcminwidth} = this.props
+
         return(
             <TouchableOpacity 
                             disabled={fcDisabled}

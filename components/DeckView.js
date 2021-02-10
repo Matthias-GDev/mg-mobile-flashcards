@@ -23,7 +23,8 @@ class DeckView extends Component{
     }
 
     onHandleStartQuiz(){
-        console.log("Start Quiz")
+        const {navigation,deck} = this.props
+        navigation.navigate('QuizView',{deckId:deck.title})
     }
 
     onHandleDeleteDeck(){

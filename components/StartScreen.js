@@ -10,6 +10,8 @@ import AddDecks from './AddDecks';
 import Decks from './Decks';
 import DeckView from './DeckView';
 import NewQuestion from './NewQuestion'
+import QuizView from './QuizView'
+import QuizScore from './QuizScore'
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -20,6 +22,8 @@ function HomeStackScreen() {
         <HomeStack.Screen name="Decks" component={Decks} />             
         <HomeStack.Screen name="DeckView" component={DeckView} />
         <HomeStack.Screen name="NewQuestion" component={NewQuestion} />
+        <HomeStack.Screen name="QuizView" component={QuizView} />
+        <HomeStack.Screen name="QuizScore" component={QuizScore} />
    </HomeStack.Navigator>
   );
 }

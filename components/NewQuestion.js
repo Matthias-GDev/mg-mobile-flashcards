@@ -45,7 +45,7 @@ class NewQuestion extends Component {
 
         return(
             <View style={{maxHeight:'98%',minHeight:'98%',alignItems: 'center'}}>
-                <View style={{minWidth:'85%', maxWidth:'95%',minHeight:'95%',flex:1,flexDirection:'column',padding:10,backgroundColor:'red'}}>
+                <View style={{minWidth:'85%', maxWidth:'95%',minHeight:'95%',flex:1,flexDirection:'column',padding:10}}>
                     <Text>{"\n"}</Text>
                     <View style={{height:'10%', alignItems:'center',flex:1,justifyContent: 'flex-start'}}>
                         <Text style={{fontSize:20}}>Create New Question and Answer{"\n\n"}</Text>
