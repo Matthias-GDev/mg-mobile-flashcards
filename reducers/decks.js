@@ -1,4 +1,4 @@
-import { ADD_NEW_DECK,GET_ALL_DECKS  } from '../actions/types'
+import { ADD_NEW_DECK,GET_ALL_DECKS,DELETE_DECK  } from '../actions/types'
 
 export default function decks (state = {}, action) {
     
@@ -22,6 +22,13 @@ export default function decks (state = {}, action) {
                 ...state,
                 ...action.decks
             }
+
+        case DELETE_DECK:
+            const { deck } = action;
+            const deckTitle = deck.title
+            const { [deckTitle]: value, ...restDecks } = state;
+            return restDecks;
+                
         default:
             return state
     }

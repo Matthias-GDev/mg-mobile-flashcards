@@ -1,5 +1,5 @@
-import { saveNewDeckAPI,getAllDecksAPI } from '../utils/api'
-import { addNewDeck,getAllDecks } from '../actions/decks'
+import { saveNewDeckAPI,getAllDecksAPI,deleteDeckAPI } from '../utils/api'
+import { addNewDeck,getAllDecks,deleteDeck } from '../actions/decks'
 
 export function handleSaveNewDeck(deck) {
     return (dispatch) => {
@@ -21,5 +21,19 @@ export function handleGetAllDecks() {
             dispatch(getAllDecks(decks))
             
         })
+    }
+}
+
+export function handleDeleteDeck(deck){
+    return (dispatch) => {
+        const deckdata = deck
+        return deleteDeckAPI(deck)
+        .then(() => {
+            dispatch(deleteDeck(deckdata))
+        })
+        .catch(error => {
+                console.log("ERROR: " + error);
+            }
+        )
     }
 }

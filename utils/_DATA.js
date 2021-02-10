@@ -36,6 +36,17 @@ export function _getAllDecks (){
     })
 }
 
+export function _deleteDeck(deck){
+  
+  const deckData = deck
+  const deckId = deck.title
+
+  return new Promise((res, rej) => {
+    decks = delete decks[deckId]
+    return res(deckData)
+  })
+}
+
 
 export function _saveNewDeck (deck){
   console.log("_saveNewDeck")

@@ -1,19 +1,63 @@
 import { Component } from "react"
 import React from 'react';
-import { View,Text} from 'react-native';
+import { View,Text,TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux';
+import { handleDeleteDeck } from '../actions/shared'
+
+import FcButton from "./FcButton";
 
 class DeckView extends Component{
 
+    constructor(props){
+        super(props)
+        this.onHandleAddNewCard = this.onHandleAddNewCard.bind(this)
+        this.onHandleStartQuiz = this.onHandleStartQuiz.bind(this)
+        this.onHandleDeleteDeck = this.onHandleDeleteDeck.bind(this)
+    }
+
+    onHandleAddNewCard(){
+        console.log("Add new Card")
+    }
+
+    onHandleStartQuiz(){
+        console.log("Start Quiz")
+    }
+
+    onHandleDeleteDeck(){
+        console.log("Delete Deck")
+        const {navigation,deck} = this.props
+
+        this.props.dispatch(handleDeleteDeck(deck))
+        
+        setTimeout(function() {
+				 navigation.navigate('Decks')
+		}, 100);
+    }
+
     render(){
         const { deck } = this.props
+        const decktitle = deck?deck.title:''
+        const countCards = deck!=null && deck.questions ? deck.questions.length:0
+
         return(
-            <View>
-                <Text>Ich bin ein DeckView - {deck.title}</Text>
+            <View style={{maxHeight:'98%',minHeight:'98%',alignItems: 'center',}}>
+                <View style={{minWidth:'85%', maxWidth:'95%',minHeight:'95%',flex:1,flexDirection:'column',padding:10}}>
+                    <Text>{"\n\n\n"}</Text>
+                    <View style={{height:'10%', alignItems:'center',flex:1,justifyContent: 'flex-start'}}>
+                        <Text style={{fontSize:40,fontWeight:'bold'}}>{decktitle}</Text>
+                        <Text style={{fontSize:25}}>{countCards} {countCards>1?'cards':'card'}</Text>
+                    </View>
+
+                    <View style={{height:'40%',flex:1,justifyContent: 'flex-end'}}>
+                        <FcButton backColor='black' title='Add Card' onClick={this.onHandleAddNewCard}/>
+                        <FcButton backColor='black' title='Start Quiz' onClick={this.onHandleStartQuiz} fcDisabled={countCards===0?true:false}/>
+                        <Text>{"\n"}</Text>
+                        <FcButton backColor='red' title='Delete Deck' onClick={this.onHandleDeleteDeck}/>
+                    </View>
+                </View>
             </View>
         )
     }
-
 }
 
 function mapStateToProps(state , { route }) {
