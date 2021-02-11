@@ -25,7 +25,7 @@ async function schedulePushNotification() {
       body: 'Please learn at least 1 quiz a day',
       data: { data: 'goes here' },
     },
-    trigger: { seconds: 4 },
+    trigger: { seconds: 3 },
   });
 }
 

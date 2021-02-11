@@ -21,8 +21,8 @@ The app will allow users to create different categories of flashcards called "de
 - Open your Terminal
 - Clone the git project with "git clone https://github.com/Matthias-GDev/mg-mobile-flashcards.git"
 - Go into the folder "mg-mobile-flashcards"
-- Run `npm install` and install all project dependencies
-- Start the App with `yarn start` or `npm start`
+- Run `yarn install` and install all project dependencies
+- Start the App with `yarn start`
 - View the App in your Browser: http://localhost:3000.
 
 ## App tested with the following devices
