@@ -27,8 +27,8 @@ The app will allow users to create different categories of flashcards called "de
 
 ## App tested with the following devices
 
-- iOS 14.4
-- Android 11.0
+- iOS 14.4 (iPhone)
+- Android 11.0 (Simulator)
 
 ## Links
 

@@ -117,6 +117,7 @@ class QuizView extends Component {
         return(
             <View style={{minHeight:'85%',alignItems: 'center'}}>
                 <View style={{minWidth:'95%', maxWidth:'95%',minHeight:'95%',flex:1,flexDirection:'column',padding:10}}>
+                <Text>{"\n\n\n"}</Text>
                      <View style={{alignItems:'center',flex:1,justifyContent: 'flex-start'}}>
                         <Text>{"\n"}</Text>
                         <Text style={{color:'black',fontSize:15}}>(Question Number: {(this.state.lastQuestionNumber+1)} / Questions left: {openQuestions})</Text>
@@ -133,7 +134,7 @@ class QuizView extends Component {
                                         </View>
                         </TouchableOpacity>
                      </View>
-                     <View style={{height:'30%',justifyContent: 'flex-end'}}>
+                     <View style={{height:'25%',justifyContent: 'flex-end'}}>
                         <View style={{flex:1,flexDirection:'row',alignItems: 'center',margin:20,justifyContent:'space-between',alignItems:'stretch',borderColor:'black'}}>
                              <TouchableOpacity 
                                             style={{height: '35%',minWidth:'40%', marginTop: 10, backgroundColor:'black'}}

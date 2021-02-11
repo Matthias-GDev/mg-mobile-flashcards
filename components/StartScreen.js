@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { View,Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -27,6 +26,8 @@ function HomeStackScreen() {
    </HomeStack.Navigator>
   );
 }
+
+
 
 class StartScreen extends Component {
     render(){

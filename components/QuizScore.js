@@ -51,8 +51,8 @@ function mapStateToProps(state , { route }) {
     const { deckId,questionswrong,questionsright,questionstotal } = route.params;
     const deckItem = deckId ? state.decks[deckId] : {'title':'error'}
 
-    const rightprocentage = questionsright/(questionstotal/100)
-    const wrongprocentage = questionswrong/(questionstotal/100)
+    const rightprocentage = (questionsright/(questionstotal/100)).toFixed(2)
+    const wrongprocentage = (questionswrong/(questionstotal/100)).toFixed(2)
 
 	return {
         deck:deckItem,

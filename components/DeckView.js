@@ -1,6 +1,6 @@
 import { Component } from "react"
 import React from 'react';
-import { View,Text,TouchableOpacity} from 'react-native';
+import { View,Text} from 'react-native';
 import { connect } from 'react-redux';
 import { handleDeleteDeck } from '../actions/shared'
 
