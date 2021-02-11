@@ -19,11 +19,11 @@ const HomeStack = createStackNavigator();
 function HomeStackScreen() {
  return (
    <HomeStack.Navigator>
-        <HomeStack.Screen name="Decks" component={Decks} />             
-        <HomeStack.Screen name="DeckView" component={DeckView} />
-        <HomeStack.Screen name="NewQuestion" component={NewQuestion} />
-        <HomeStack.Screen name="QuizView" component={QuizView} />
-        <HomeStack.Screen name="QuizScore" component={QuizScore} />
+        <HomeStack.Screen name="Decks" component={Decks}  />             
+        <HomeStack.Screen name="DeckView" component={DeckView} options={{headerShown:false}} />
+        <HomeStack.Screen name="NewQuestion" component={NewQuestion} options={{headerShown:false}}/>
+        <HomeStack.Screen name="QuizView" component={QuizView} options={{headerShown:false}}/>
+        <HomeStack.Screen name="QuizScore" component={QuizScore} options={{headerShown:false}}/>
    </HomeStack.Navigator>
   );
 }
@@ -50,7 +50,7 @@ class StartScreen extends Component {
                     },
                     })}
                       tabBarOptions={{
-                      activeTintColor: 'tomato',
+                      activeTintColor: 'purple',
                       inactiveTintColor: 'gray',
                     }}
                 >

@@ -9,7 +9,7 @@ class QuizView extends Component {
     constructor(props){
         super(props)
         this.state={
-            gameplaydeck:null,
+            gameplaydeck:[],
             showAnswer:false,
             lastQuestionNumber:0,
             openQuestions:0,
@@ -33,61 +33,80 @@ class QuizView extends Component {
     }
 
     onCorrectClick(){
-        this.changeQuestion()
         this.setState({
             countCorrect:this.state.countCorrect +1,
             showAnswer:false
         })
+        this.changeQuestion(1)
     }
 
     onWrongClick(){
-        this.changeQuestion()
         this.setState({
             countWrong:this.state.countWrong +1,
             showAnswer:false
         })
+        this.changeQuestion(0)
     }
 
-    changeQuestion(){
+    changeQuestion(answer){
         let nextNumber = 0
         const lastNumber = this.state.lastQuestionNumber
-        const actualMaximum = this.props.playdeck.questions.length
+        const actualMaximum = this.props.deck.questions.length
+        const {gameplaydeck,openQuestions} = this.state
+        const {deck,navigation} = this.props
 
-        console.log("actualMaximum:" +actualMaximum)
-        
-        if(actualMaximum===1)
+        if(openQuestions===1)
         {
+            let qwrong = this.state.countWrong
+            let qright = this.state.countCorrect
+            const qtotal = deck.questions.length
+
+            if(answer===1){
+                qright=qright+1
+            }
+            else{
+                qwrong=qwrong+1
+            }
+
             this.setState({
-                gameplaydeck:this.props.playdeck,
-                openQuestions:this.props.playdeck.questions.length
+                gameplaydeck:[],
+                countWrong:0,
+                countCorrect:0,
+                openQuestions:deck.questions.length
             })
 
             //Complete
-            this.props.navigation.navigate('QuizScore')
+            navigation.navigate('QuizScore',{questionswrong:qwrong,questionsright:qright,questionstotal:qtotal,deckId:deck.title})
         }
         else
         {
+            if(gameplaydeck[lastNumber]===undefined)
+            {
+                this.setState({
+                    gameplaydeck:this.state.gameplaydeck[lastNumber]=1
+                })
+            }
+
             do {
                 nextNumber = (Math.round(((Math.random() * (actualMaximum - 1)) + 1)))-1
-            } while(nextNumber===lastNumber)
+            }while(nextNumber===lastNumber && gameplaydeck[nextNumber]===1)
 
             this.setState({
-                actualQuestion:this.state.gameplaydeck.questions[nextNumber].question,
-                actualAnswer:this.state.gameplaydeck.questions[nextNumber].answer,
+                actualQuestion:deck.questions[nextNumber].question,
+                actualAnswer:deck.questions[nextNumber].answer,
                 lastQuestionNumber:nextNumber,
                 openQuestions:(this.state.openQuestions-1),
-                gameplaydeck: this.state.gameplaydeck.questions.splice(lastNumber,1)
             })
         }
     }
 
     componentDidMount(){
         this.setState({
-            gameplaydeck:this.props.playdeck,
-            actualQuestion:this.props.playdeck.questions[this.props.startnumber].question,
-            actualAnswer:this.props.playdeck.questions[this.props.startnumber].answer,
+            gameplaydeck:this.props.deck,
+            actualQuestion:this.props.deck.questions[this.props.startnumber].question,
+            actualAnswer:this.props.deck.questions[this.props.startnumber].answer,
             lastQuestionNumber:this.props.startnumber,
-            openQuestions:this.props.playdeck.questions.length
+            openQuestions:this.props.deck.questions.length
         })
     }
 
@@ -147,7 +166,6 @@ function mapStateToProps(state , { route }) {
 
 	return {
         deck:deckItem,
-        playdeck:deckItem,
         startnumber:startnumberforquiz
 	};
 }

@@ -31,10 +31,20 @@ class NewQuestion extends Component {
     }
 
     onHandleSubmitNewQuestion(){
-        const {navigation,deck} = this.props
+        const {navigation,deck,dispatch} = this.props
         const {question,answer} = this.state
-        const card={'question':question,'answer':answer}
-        this.props.dispatch(handleNewQuestionToDeck(card,deck.title))
+
+        const qvalue = question
+        const qanswer = answer
+
+        this.setState({
+            question:'',
+            answer:''
+        })
+
+        const card={'question':qvalue,'answer':qanswer}
+        
+        dispatch(handleNewQuestionToDeck(card,deck.title))
         navigation.navigate('DeckView', { deckId:deck.title })
     }
 
@@ -76,8 +86,6 @@ class NewQuestion extends Component {
 
 function mapStateToProps(state , { route }) {
     const { deckId } = route.params;
-    console.log("mapStateToProps")
-    console.log("deckId "+deckId)
     const deckItem = deckId ? state.decks[deckId] : {'title':'error'}
 
 	return {

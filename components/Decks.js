@@ -22,7 +22,7 @@ class Decks extends React.Component {
                 <Text>{"\n\n\n\n"}Card Decks - ( {decks!==null ? decks.length : ''} )</Text>
                 <MaterialCommunityIcons name="cards" size={30} />
 
-                <View style={{minWidth:'80%',flexDirection:'column',justifyContent: 'flex-start',padding:10,backgroundColor:'yellow'}}>
+                <View style={{minWidth:'80%',flexDirection:'column',justifyContent: 'flex-start',padding:10}}>
                      <FlatList
                         data={sortedDecks}
                         keyExtractor={item => item.id}
@@ -31,11 +31,11 @@ class Decks extends React.Component {
                         }}
                         renderItem={({item}) => (
                             <TouchableOpacity onPress={() => { navigation.navigate('DeckView', { deckId:item.title }); }}>
-                                <View style={{backgroundColor:'red',alignItems: 'center',borderWidth:1,margin:5}}>
+                                <View style={{backgroundColor:'purple',alignItems: 'center',borderWidth:1,margin:5}}>
                                     <View style={{felx:2, flexDirection:'column'}}>
-                                        <Text style={{margin:5, fontSize:25,fontWeight:'bold'}}>{item.title}</Text>
+                                        <Text style={{margin:5, fontSize:25,fontWeight:'bold',color:'white'}}>{item.title}</Text>
                                         <View style={{alignItems: 'center'}}>
-                                            <Text style={{margin:2}}>{item.questions.length} - Cards</Text>
+                                            <Text style={{margin:2,color:'white'}}>{item.questions.length} - Cards</Text>
                                         </View>
                                     </View>
                                 </View>
